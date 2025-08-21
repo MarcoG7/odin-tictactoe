@@ -65,6 +65,50 @@ h1 {
     margin: 20px 0;
 }
 
+.cell {
+    background-color: #ffffff;
+    border: 2px solid #333333;
+    font-size: 36px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.cell:hover {
+    background-color: #f8f9fa;
+}
+
+.cell.taken {
+    cursor: not-allowed;
+    background-color: #e9ecef;
+}
+
+.cell.x {
+    color: #dc3545;
+}
+
+.cell.o {
+    color: #007bff;
+}
+
+.game-info {
+    margin: 20px 0;
+    font-size: 18px;
+    font-weight: bold;
+    min-height: 25px;
+}
+
+.winner {
+    color: #28a745;
+}
+
+.tie {
+    color: #ffc107;
+}
+
 .btn-reset {
     margin-top: 10px;
     padding: 12px 24px;
