@@ -159,10 +159,91 @@ const GameController = (() => {
 })();
 
 
-GameController.set_players("Alice", "Bob");
-console.log(GameController.play_move(0)); // Alice plays
-console.log(GameController.play_move(1)); // Bob plays  
-console.log(GameController.play_move(4)); // Alice plays
-console.log(GameController.play_move(2)); // Bob plays
-console.log(GameController.play_move(8)); // Alice plays - might win!
-Gameboard.display_board();
+const DisplayController = (() => {
+    const game_board_div = document.getElementById("game-board");
+    const game_info_div = document.getElementById("game-info");
+
+    const create_board = () => {
+        game_board_div.innerHTML = '';
+        for (let i = 0; i < 9; i++) {
+            const cell = document.createElement("div");
+            cell.classList.add("cell");
+            cell.dataset.index = i;
+            cell.addEventListener("click", cell_click);
+            game_board_div.appendChild(cell);
+        }
+    };
+
+    const cell_click = (e) => {
+        const index = parseInt(e.target.dataset.index);
+        const result = GameController.play_move(index);
+
+        if (result.success) {
+            update_display();
+
+            if (result.game_over) {
+                if (result.winner) {
+                    game_info_div.textContent = result.message;
+                    game_info_div.className = "game-info winner";
+                } else if (result.tie) {
+                    game_info_div.textContent = result.message;
+                    game_info_div.className = "game-info tie";
+                }
+            } else {
+                game_info_div.textContent = result.message;
+                game_info_div.className = "game-info";
+            }
+        }
+    };
+
+    const update_display = () => {
+        const board = Gameboard.get_board();
+        const cells = document.querySelectorAll(".cell");
+
+        cells.forEach((cell, index) => {
+            cell.textContent = board[index];
+            cell.className = "cell";
+
+            if (board[index] !== ' ') {
+                cell.classList.add('taken');
+                cell.classList.add(board[index].toLowerCase());
+            }
+        });
+    };
+
+    const setup_players = () => {
+        const player1_name = document.getElementById("player1-name").value || "Player 1";
+        const player2_name = document.getElementById("player2-name").value || "Player 2";
+
+        GameController.set_players(player1_name, player2_name);
+        GameController.reset_game();
+        create_board();
+        update_display();
+
+        game_info_div.textContent = `${GameController.get_current_player().get_name()}'s turn (${GameController.get_current_player().get_marker()})`
+        game_info_div.className = "game-info";
+    };
+
+    const reset_game = () => {
+        if (GameController.is_game_active || confirm("Start a new game?")) {
+            GameController.reset_game();
+            update_display();
+            game_info_div.textContent = `${GameController.get_current_player().get_name()}'s turn (${GameController.get_current_player().get_marker()})`
+            game_info_div.className = "game-info";
+        }
+    };
+
+    create_board();
+
+    return {
+        setup_players,
+        reset_game
+    }
+})();
+
+
+let btn_start_game = document.getElementById("btn-start-game");
+btn_start_game.addEventListener("click", DisplayController.setup_players);
+
+let btn_reset_game = document.getElementById("btn-reset");
+btn_reset_game.addEventListener("click", DisplayController.reset_game);
