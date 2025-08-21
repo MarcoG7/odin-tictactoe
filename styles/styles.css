@@ -1,0 +1,85 @@
+body {
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 600px;
+
+    background-color: #f0f0f0;
+    
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.game-controller {
+    padding: 30px;
+    
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 30px;
+    color: #333333;
+}
+
+.player-setup {
+    margin-bottom: 30px;
+}
+
+.player-setup input {
+    margin: 5px;
+    padding: 8px;
+    
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    
+    font-size: 16px;
+}
+
+.player-setup button {
+    margin: 5px;
+    padding: 8px 16px;
+    
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    
+    cursor: pointer;
+    
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.player-setup button:hover {
+    background-color: #0056b3;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 5px;
+    justify-content: center;
+    
+    margin: 20px 0;
+}
+
+.btn-reset {
+    margin-top: 10px;
+    padding: 12px 24px;
+    
+    border: none;
+    border-radius: 4px;
+    
+    background-color: #28a745;
+    
+    cursor: pointer;
+    
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.btn-reset:hover {
+    background-color: #1e7e34;
+}
