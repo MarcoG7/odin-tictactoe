@@ -38,6 +38,31 @@ const Gameboard = (() => {
     }
 })();
 
-Gameboard.set_mark(0, "X");
-Gameboard.set_mark(4, "O");
+
+const Player = (name, marker) => {
+    const get_name = () => name;
+    const get_marker = () => marker;
+
+    const make_move = (gameboard, position) => {
+        return gameboard.set_mark(position, marker);
+    };
+
+    return {
+        get_name,
+        get_marker,
+        make_move
+    }
+};
+
+const player1 = Player("Alice", "X");
+const player2 = Player("Bob", "O");
+
+// Test the players
+console.log(player1.get_name()); // "Alice"
+console.log(player1.get_marker()); // "X"
+console.log(player2.get_name()); // "Bob"
+console.log(player2.get_marker()); // "O"
+
+player1.make_move(Gameboard, 0);
+player2.make_move(Gameboard, 4);
 Gameboard.display_board();
