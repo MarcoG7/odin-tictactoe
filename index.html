@@ -9,22 +9,30 @@
     <body>
         <div class="game-controller">
             <h1>Tic-Tac-Toe</h1>
-        </div>
 
-        <div class="player-setup">
-            <input
-                type="text"
-                id="player1-name"
-                placeholder="Player 1 Name"
-                value="Player 1" />
+            <div class="player-setup">
+                <input
+                    type="text"
+                    id="player1-name"
+                    placeholder="Player 1 Name"
+                    value="Player 1" />
 
-            <input
-                type="text"
-                id="player2-name"
-                placeholder="Player 2 Name"
-                value="Player 2" />
+                <input
+                    type="text"
+                    id="player2-name"
+                    placeholder="Player 2 Name"
+                    value="Player 2" />
 
-            <button id="btn-start-game">Start Game</button>
+                <button id="btn-start-game">Start Game</button>
+            </div>
+
+            <div class="game-info" id="game-info">
+                Enter player names and click Start Game
+            </div>
+
+            <div class="game-board" id="game-board"></div>
+
+            <button class="btn-reset" id="btn-reset">New Game</button>
         </div>
 
         <script src="scripts/script.js" defer></script>
